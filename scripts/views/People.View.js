@@ -14,13 +14,26 @@ define([
 		className: "people",
 		initialize: function() {
 			this.model = this.options.model;
+
+			this.model.on("change:checkin", _.bind(this.render, this));
+			this.model.on("change:show", _.bind(this.render, this));
 		},
 		render: function() {
 			this.$el.html(_.template(PeopleTemplate, this.model.attributes));
-			if (this.model.get("response") === "no") {
-				this.$el.hide();
-			}
+			this.shouldHide();
 			return this;
+		},
+		/*
+		if model says to hide, hide the element.  else show.
+		*/
+		shouldHide: function() {
+			if (this.model.get("show") === "no") {
+				this.$el.removeClass("yesshow");
+				this.hide();
+			} else {
+				this.$el.addClass("yesshow");
+				this.show();
+			}
 		},
 		/*
 		make the pictures a perfect square (not working)
@@ -33,6 +46,24 @@ define([
 			} else {
 				$img.width(50);
 			}
+		},
+		events: {
+			"click": "checkin"
+		},
+		checkin: function() {
+			// toggle checkin
+			if (this.model.get("checkin") === "no") {
+				this.model.set("checkin", new Date());
+				this.$el.trigger("checkedin");
+			} else {
+				this.model.set("checkin", "no");
+			}
+		},
+		show: function() {
+			this.$el.removeClass("hideView");
+		},
+		hide: function() {
+			this.$el.addClass("hideView");
 		}
 	});
 });

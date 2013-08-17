@@ -22,9 +22,13 @@ body {
 	color: #dc322f;
 }
 
-.checkmark.checkedIn {
+.checkmark.yescheckin {
 	/*green*/
 	color: #859900;
+}
+
+.people.hideView {
+	display: none;
 }
 
 /*
@@ -36,6 +40,19 @@ specific
 
 #sortby {
 
+}
+
+.checkinSuccess {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+	top: 50%;
+	margin-top: -100px;
+}
+
+.checkinSuccessIcon {
+	/*green*/
+	color: #859900;
 }
 
 .people {
@@ -66,4 +83,8 @@ specific
 /* bootstrap modifing */
 input[type="text"] {
 	height: auto;
+}
+
+.modal-backdrop {
+	opacity: 0;
 }
