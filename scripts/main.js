@@ -20,11 +20,14 @@ require.config({
 require([
 	"jquery",
 	"underscore",
-	"backbone"
+	"backbone",
+	"app/collections/Peoples.Collection"
 ], function(
 	$,
 	_,
-	Backbone
+	Backbone,
+	PeoplesCollection
 ) {
-	
+	var pc = new PeoplesCollection();
+	pc.fetch();
 });
