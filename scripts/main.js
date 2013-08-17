@@ -21,13 +21,13 @@ require([
 	"jquery",
 	"underscore",
 	"backbone",
-	"app/collections/Peoples.Collection"
+	"app/views/App.View"
 ], function(
 	$,
 	_,
 	Backbone,
-	PeoplesCollection
+	AppView
 ) {
-	var pc = new PeoplesCollection();
-	pc.fetch();
+	var appView = new AppView();
+	appView.render();
 });

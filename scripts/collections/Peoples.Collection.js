@@ -34,10 +34,11 @@ define([
 						member.response = rsvp.response;
 					});
 					that.reset(members);
-					console.log(that);
 				});
 			});
+		},
+		comparator: function(model) {
+			return model.get("info").name;
 		}
-
 	});
 });
