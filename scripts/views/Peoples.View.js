@@ -19,16 +19,26 @@ define([
 			this.collection = this.options.collection;
 
 			this.collection.on("reset", _.bind(this.renderPeople, this));
+			this.collection.on("add", _.bind(this.addPerson, this));
 		},
 		renderPeople: function() {
 			var view,
 				that = this;
 			this.collection.each(function(model) {
-				view = new PeopleView({model: model});
-				that.$el.append(view.render().el);
-
-				model.view = view;
+				that.addPerson(model);
 			});
+		},
+		addPerson: function(model) {
+			var view = new PeopleView({model: model});
+			this.$el.append(view.render().el);
+
+			model.view = view;
+
+			// if i'm adding a non-member, they must be checking in
+			// so trigger "click" on the view and check them in
+			if (model.get("member") !== "yes") {
+				view.checkin();
+			}
 		},
 		filterBySearch: function(val) {
 			this.$(".people").addClass("hideView");

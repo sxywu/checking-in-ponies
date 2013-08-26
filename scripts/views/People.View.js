@@ -21,6 +21,7 @@ define([
 		render: function() {
 			this.$el.html(_.template(PeopleTemplate, this.model.attributes));
 			this.shouldHide();
+			this.isMember();
 			return this;
 		},
 		/*
@@ -33,6 +34,13 @@ define([
 			} else {
 				this.$el.addClass("yesshow");
 				this.show();
+			}
+		},
+		isMember: function() {
+			if (this.model.get("member") === "yes") {
+				this.$el.addClass("member");
+			} else {
+				this.$el.removeClass("member");
 			}
 		},
 		/*
@@ -51,6 +59,7 @@ define([
 			"click": "checkin"
 		},
 		checkin: function() {
+			console.log("checkin", this.model.get("checkin"));
 			// toggle checkin
 			if (this.model.get("checkin") === "no") {
 				this.model.set("checkin", new Date());
