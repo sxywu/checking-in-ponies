@@ -21,24 +21,12 @@ define([
 		*/
 		fetch: function() {
 			var that = this;
-			$.get("/checking-in-ponies/data/members.json", function(members) {
-				$.get("/checking-in-ponies/data/events.json", function(events) {
-					var rsvps = events[0].rsvps,
-						membersKey = {};
-					_.each(members, function(member) {
-						membersKey[member.id] = member;
-					});
-					_.each(rsvps, function(rsvp) {
-						var member = membersKey[rsvp.id];
-						member.guests = rsvp.guests;
-						member.response = rsvp.response;
-					});
-					that.reset(members);
-				});
+			$.get("/checking-in-ponies/data/rsvps.json", function(members) {
+				that.reset(members);
 			});
 		},
 		comparator: function(model) {
-			return model.get("info").name;
+			return model.get("name");
 		}
 	});
 });

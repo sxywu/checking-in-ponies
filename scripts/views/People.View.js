@@ -48,7 +48,6 @@ define([
 		*/
 		makeSquare: function() {
 			var $img = this.$(".memberImg img");
-			console.log($img[0], $img.height(), $img.width());
 			if ($img.height() > $img.width()) {
 				$img.height(50);
 			} else {
@@ -59,11 +58,11 @@ define([
 			"click": "checkin"
 		},
 		checkin: function() {
-			console.log("checkin", this.model.get("checkin"));
 			// toggle checkin
 			if (this.model.get("checkin") === "no") {
-				this.model.set("checkin", new Date());
+				this.model.set("checkin", +new Date());
 				this.$el.trigger("checkedin");
+
 			} else {
 				this.model.set("checkin", "no");
 				this.$el.trigger("checkedout");
@@ -71,7 +70,7 @@ define([
 		},
 		show: function() {
 			this.$el.removeClass("hideView");
-			this.$(".memberImg img").attr("src", this.model.get("info").avatar);
+			this.$(".memberImg img").attr("src", this.model.get("avatar"));
 		},
 		hide: function() {
 			this.$el.addClass("hideView");

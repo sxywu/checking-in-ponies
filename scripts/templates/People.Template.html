@@ -1,17 +1,18 @@
 <!-- template for People.View.js -->
 <% 
+var tempCheckin = checkin;
 if (checkin !== "no") {
-	checkin = "yes";
+	tempCheckin = "yes";
 }
 %>
-<span class="checkmark <%= response %>RSVP <%= checkin %>checkin glyphicon glyphicon-ok"></span>
+<span class="checkmark <%= response %>RSVP <%= tempCheckin %>checkin glyphicon glyphicon-ok"></span>
 <span class="memberImg">
 	<img 
 	<% if (show === "yes") { %>
-		src="<%= info.avatar %>"
+		src="<%= avatar %>"
 	<% } %>
 	></img>
 </span>
 <span class="memberName">
-	<%= info.name %>
+	<%= name %>
 </span>

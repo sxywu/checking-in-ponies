@@ -14,15 +14,16 @@ define([
 	- joined (date)
 	- response (yes, no, waitlist)
 	- number of guests
-	- checkin
-	- member (yes, no, or referral member's name)
+	- checkinAt (null, or Date object)
+	- referrer
 	*/
 	return Backbone.Model.extend({
 		initialize: function() {
 			this.attributes.response = this.attributes.response || "no"; // default values in case 
 			this.attributes.guests = this.attributes.guests || 0; // it's not provided
-			this.attributes.checkin = this.attributes.checkin || "no";
-			this.attributes.member = this.attributes.member || "yes";
+			this.attributes.checkin = this.attributes.checkinAt || "no";
+			this.attributes.referrer = this.attributes.referrer || "";
+			this.attributes.avatar = this.attributes.avatar || "";
 
 			this.toggleShow();
 			this.on("change", _.bind(this.toggleShow, this));

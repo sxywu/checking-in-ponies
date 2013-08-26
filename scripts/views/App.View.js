@@ -54,7 +54,7 @@ define([
 		},
 		addPerson: function() {
 			var name = this.$("input.search").val(),
-				data = {info: {name: name}, member: "no"};
+				data = {name: name, member: "no"};
 			this.peoplesView.collection.add(data);
 
 			this.endSearch();

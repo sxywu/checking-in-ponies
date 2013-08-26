@@ -36,7 +36,7 @@ define([
 
 			// if i'm adding a non-member, they must be checking in
 			// so trigger "click" on the view and check them in
-			if (model.get("member") !== "yes") {
+			if (!model.get("memberId")) {
 				view.checkin();
 			}
 		},
@@ -44,7 +44,7 @@ define([
 			this.$(".people").addClass("hideView");
 			var regex = new RegExp(val, "gi");
 			this.collection.each(function(model) {
-				if (regex.test(model.get("info").name)) {
+				if (regex.test(model.get("name"))) {
 					model.view.show();
 				}
 			});
