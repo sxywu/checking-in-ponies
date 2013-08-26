@@ -57,13 +57,16 @@ define([
 				this.$el.trigger("checkedin");
 			} else {
 				this.model.set("checkin", "no");
+				this.$el.trigger("checkedout");
 			}
 		},
 		show: function() {
 			this.$el.removeClass("hideView");
+			this.$(".memberImg img").attr("src", this.model.get("info").avatar);
 		},
 		hide: function() {
 			this.$el.addClass("hideView");
+			this.$(".memberImg img").attr("src", "");
 		}
 	});
 });
